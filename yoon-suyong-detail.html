@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>윤수용 — Korean Soul Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+KR:wght@300;400;600;700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9903A;
+    --gold-light: #E8B96A;
+    --gold-pale: #F5DCA8;
+    --deep: #0A0806;
+    --brown: #1C1209;
+    --warm: #2A1A0A;
+    --cream: #F2EAD8;
+    --text: #E8DCC8;
+    --muted: #9A8A72;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 1001;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(201,144,58,0.35);
+    background: rgba(10, 8, 6, 0.78);
+    backdrop-filter: blur(14px);
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .back-link::before {
+    content: '←';
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .back-link:hover {
+    transform: translateX(-2px);
+    border-color: rgba(201,144,58,0.65);
+    background: rgba(18, 12, 7, 0.92);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, #3D2010 0%, #150C04 50%, #0A0806 100%);
+  }
+
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 79px,
+        rgba(201,144,58,0.06) 80px
+      );
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+  }
+
+  .eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 6px;
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 6vw, 88px);
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 20px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+    max-width: 400px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+
+  .tag {
+    border: 1px solid rgba(201,144,58,0.4);
+    border-radius: 2px;
+    padding: 5px 14px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold-pale);
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 14px;
+    padding: 16px 36px;
+    text-decoration: none;
+    transition: all 0.3s;
+    width: fit-content;
+  }
+
+  .hero-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-right {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+  }
+
+  .portrait-frame {
+    position: relative;
+    width: 380px;
+    height: 520px;
+  }
+
+  .portrait-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #2D1A08, #1A0F05);
+    border: 1px solid rgba(201,144,58,0.3);
+    border-radius: 2px;
+  }
+
+  .portrait-inner {
+    position: absolute;
+    inset: 20px;
+    background: linear-gradient(160deg, #1C1108 0%, #0F0A05 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Silhouette illustration using CSS */
+  .silhouette {
+    width: 180px;
+    height: 280px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sil-head {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, #8B5E1A 100%);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 40px rgba(201,144,58,0.3);
+  }
+
+  .sil-mic {
+    position: absolute;
+    bottom: -8px;
+    right: -12px;
+    width: 8px;
+    height: 28px;
+    background: var(--gold);
+    border-radius: 4px;
+    transform: rotate(20deg);
+  }
+
+  .sil-mic::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--gold-light);
+  }
+
+  .sil-body {
+    width: 100px;
+    height: 140px;
+    background: linear-gradient(180deg, #3D2010 0%, #1A0D05 100%);
+    border-radius: 50px 50px 10px 10px;
+    margin-top: -10px;
+    position: relative;
+  }
+
+  .sil-arms {
+    position: absolute;
+    top: 20px;
+    left: -30px;
+    right: -30px;
+    height: 50px;
+  }
+
+  .sil-arm-l, .sil-arm-r {
+    position: absolute;
+    width: 40px;
+    height: 12px;
+    background: #3D2010;
+    border-radius: 6px;
+    top: 0;
+  }
+
+  .sil-arm-l { left: 0; transform: rotate(30deg); }
+  .sil-arm-r { right: 0; transform: rotate(-30deg); }
+
+  .portrait-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(201,144,58,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .portrait-label {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+  }
+
+  .portrait-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold-pale);
+    margin-bottom: 4px;
+  }
+
+  .portrait-role {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .portrait-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+
+  .portrait-corner.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+  .portrait-corner.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+  .portrait-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+  .portrait-corner.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+  /* Stats bar */
+  .stats-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(201,144,58,0.08);
+    border-top: 1px solid rgba(201,144,58,0.2);
+    display: flex;
+    z-index: 10;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 24px;
+    text-align: center;
+    border-right: 1px solid rgba(201,144,58,0.1);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 100px 80px;
+    position: relative;
+  }
+
+  .section-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 6px;
+    font-size: 12px;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* ── STORY ── */
+  .story {
+    background: var(--brown);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .story-text p {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 2;
+    color: #C8B89A;
+    margin-bottom: 20px;
+  }
+
+  .story-quote {
+    padding: 40px;
+    border-left: 3px solid var(--gold);
+    background: rgba(201,144,58,0.06);
+    margin: 40px 0;
+  }
+
+  .story-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.7;
+    color: var(--gold-pale);
+  }
+
+  .story-quote cite {
+    display: block;
+    margin-top: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 36px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(201,144,58,0.6);
+  }
+
+  .timeline-year {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .timeline-event {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .timeline-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CURRICULUM ── */
+  .curriculum {
+    background: var(--deep);
+  }
+
+  .curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .curriculum-card {
+    background: var(--warm);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    cursor: pointer;
+  }
+
+  .curriculum-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+    transform-origin: left;
+  }
+
+  .curriculum-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .curriculum-card:hover {
+    background: #1E1308;
+    transform: translateY(-4px);
+  }
+
+  .card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: rgba(201,144,58,0.1);
+    line-height: 1;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold-pale);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .card-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-size: 10px;
+    color: var(--gold);
+    border: 1px solid rgba(201,144,58,0.3);
+    padding: 3px 10px;
+  }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy {
+    background: linear-gradient(135deg, #1C1108 0%, #0D0805 100%);
+    text-align: center;
+    padding: 120px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philosophy::before {
+    content: 'SOUL';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 300px;
+    color: rgba(201,144,58,0.03);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .philosophy-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--cream);
+    margin: 40px 0;
+  }
+
+  .big-quote strong {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  /* ── SKILLS VISUAL ── */
+  .skills-section {
+    background: var(--brown);
+    padding: 100px 80px;
+  }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .skill-item {
+    margin-bottom: 32px;
+  }
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .skill-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  .skill-pct {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  .skill-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    animation: fillBar 1.5s ease-out both;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes fillBar {
+    from { width: 0 !important; }
+    to { width: var(--w); }
+  }
+
+  .teaching-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .teach-card {
+    background: rgba(201,144,58,0.06);
+    border: 1px solid rgba(201,144,58,0.15);
+    border-radius: 4px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: all 0.3s;
+  }
+
+  .teach-card:hover {
+    border-color: rgba(201,144,58,0.4);
+    background: rgba(201,144,58,0.1);
+  }
+
+  .teach-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .teach-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold-pale);
+    margin-bottom: 4px;
+  }
+
+  .teach-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  .achievements {
+    background: var(--deep);
+    padding: 100px 80px;
+  }
+
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .ach-item {
+    background: var(--warm);
+    padding: 40px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .ach-item:hover { background: #1E1308; }
+
+  .ach-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    opacity: 0.5;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+  }
+
+  .ach-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+
+  .ach-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .ach-detail {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, #2A1A08, #150C04);
+    padding: 100px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,144,58,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-inner h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    margin-bottom: 20px;
+  }
+
+  .cta-inner p {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--deep);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 14px;
+    padding: 18px 48px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(201,144,58,0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 14px;
+    padding: 18px 48px;
+    border: 1px solid rgba(201,144,58,0.4);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    background: rgba(201,144,58,0.08);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid rgba(201,144,58,0.1);
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(201,144,58,0.3); }
+    50% { box-shadow: 0 0 40px rgba(201,144,58,0.6); }
+  }
+
+  .hero-left { animation: fadeUp 0.8s ease both; }
+  .hero-right { animation: fadeUp 0.8s ease 0.2s both; }
+  .sil-head { animation: pulse 3s ease-in-out infinite; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 80px 40px; }
+    .stats-bar { position: relative; }
+    section { padding: 60px 32px; }
+    .story, .skills-layout { grid-template-columns: 1fr; gap: 40px; }
+    .curriculum-grid { grid-template-columns: 1fr; }
+    .ach-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .philosophy { padding: 80px 32px; }
+    .cta-section { padding: 80px 32px; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 24px 0 40px;
+  }
+</style>
+</head>
+<body>
+
+<a href="./index.html" class="back-link" data-back-link>Back</a>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-left">
+    <span class="eyebrow">Korean Soul · Leader</span>
+    <h1>
+      윤수용
+      <em>Yoon Suyong</em>
+    </h1>
+    <div class="hero-tags">
+      <span class="tag">블랙 가스펠</span>
+      <span class="tag">보컬 디렉터</span>
+      <span class="tag">빌보드 Top 10</span>
+      <span class="tag">미국 현지 활동</span>
+      <span class="tag">RCA Inspiration</span>
+    </div>
+    <p class="hero-subtitle">
+      한국인 최초로 블랙 가스펠의 본고장 미국에서 인정받은 소울 싱어.<br>
+      현지 가스펠 씬에서 몸으로 배운 진짜 소울 창법의 노하우를 전달합니다.
+    </p>
+    <a href="#curriculum" class="hero-cta">
+      커리큘럼 살펴보기 →
+    </a>
+  </div>
+
+  <div class="hero-right">
+    <div class="portrait-frame">
+      <div class="portrait-bg"></div>
+      <div class="portrait-inner">
+        <div class="portrait-glow"></div>
+        <div class="silhouette">
+          <div class="sil-head">
+            <div class="sil-mic"></div>
+          </div>
+          <div class="sil-body">
+            <div class="sil-arms">
+              <div class="sil-arm-l"></div>
+              <div class="sil-arm-r"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="portrait-label">
+        <div class="portrait-name">윤수용</div>
+        <div class="portrait-role">Korean Soul · 리더 & 보컬</div>
+      </div>
+      <div class="portrait-corner tl"></div>
+      <div class="portrait-corner tr"></div>
+      <div class="portrait-corner bl"></div>
+      <div class="portrait-corner br"></div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">10위</span>
+      <span class="stat-label">빌보드 가스펠 차트</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">ABC</span>
+      <span class="stat-label">굿모닝 아메리카 출연</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">RCA</span>
+      <span class="stat-label">Inspiration 레이블 계약</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1st</span>
+      <span class="stat-label">한국인 최초 CCC 브루클린</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── STORY ── -->
+<section class="story reveal">
+  <div class="story-text">
+    <span class="section-eyebrow">His Story</span>
+    <h2>흑인 가스펠의 세계에<br><em>뛰어든 한국인</em></h2>
+    <div class="divider"></div>
+    <p>
+      흑인 음악을 사랑하고 교회를 다니며 성장한 청년, 윤수용. 재미삼아 SNS에 올린 가스펠 커버 영상 하나가 미국 전설적 가스펠 가수 <strong style="color:var(--gold-pale)">BeBe Winans</strong>의 눈에 띄면서 그의 인생이 바뀌었습니다.
+    </p>
+    <p>
+      코리안소울(이승현, 윤수용, 이지환, 장영진)의 리더로서 미국 현지 블랙 가스펠 씬에 직접 뛰어들어, 스튜디오 세션과 공연 현장에서 흑인 가스펠 보컬리스트들과 어깨를 나란히 하며 <strong style="color:var(--gold-pale)">진짜 소울 창법</strong>을 몸으로 익혔습니다.
+    </p>
+
+    <div class="story-quote">
+      <blockquote>
+        "흑인 가스펠 세계에서 '한국인, 아시아인도 저렇게 가스펠 노래를 부를 수 있다'는 걸 보여주고 싶고, 가스펠 음악의 영성이 저희를 통해 확장됐으면 좋겠다."
+      </blockquote>
+      <cite>— 윤수용, 코리안소울 리더</cite>
+    </div>
+
+    <p>
+      블랙 가스펠은 단순한 창법이 아닙니다. 영혼의 언어입니다. 윤수용은 그 언어를 현지에서 직접 배우고, 이제 한국 보컬리스트들에게 전달하고자 합니다.
+    </p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item" style="animation-delay:0.1s">
+      <div class="timeline-year">START</div>
+      <div class="timeline-event">SNS 가스펠 커버로 화제</div>
+      <div class="timeline-desc">재미로 올린 영상이 미국 가스펠 씬에 퍼지며 본격 활동의 시작점이 됨</div>
+    </div>
+    <div class="timeline-item" style="animation-delay:0.2s">
+      <div class="timeline-year">BeBe Winans</div>
+      <div class="timeline-event">레전드 가스펠 가수와 계약 체결</div>
+      <div class="timeline-desc">미국 가스펠의 대부 BeBe Winans와 계약 후 "Laughter" 피처링</div>
+    </div>
+    <div class="timeline-item" style="animation-delay:0.3s">
+      <div class="timeline-year">Billboard</div>
+      <div class="timeline-event">빌보드 가스펠 차트 Top 10 진입</div>
+      <div class="timeline-desc">아시아인 최초로 블랙 가스펠 음악으로 빌보드 10위권 달성</div>
+    </div>
+    <div class="timeline-item" style="animation-delay:0.4s">
+      <div class="timeline-year">ABC / CCC</div>
+      <div class="timeline-event">미국 주류 미디어 & 공연 무대 등판</div>
+      <div class="timeline-desc">굿모닝 아메리카 출연 및 한국인 최초 브루클린 CCC 무대</div>
+    </div>
+    <div class="timeline-item" style="animation-delay:0.5s">
+      <div class="timeline-year">RCA Inspiration</div>
+      <div class="timeline-event">세계 최대 가스펠 레이블 계약</div>
+      <div class="timeline-desc">RCA Inspiration과 공식 계약, 솔로 앨범 준비</div>
+    </div>
+    <div class="timeline-item" style="animation-delay:0.6s">
+      <div class="timeline-year">NOW</div>
+      <div class="timeline-event">한국 싱어들에게 노하우 전수</div>
+      <div class="timeline-desc">현지 경험으로 쌓은 소울풀 싱잉의 핵심을 체계적으로 전달</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHILOSOPHY ── -->
+<section class="philosophy">
+  <div class="philosophy-content reveal">
+    <span class="section-eyebrow" style="justify-content:center">Philosophy</span>
+    <h2 style="color:#fff">소울 싱잉은<br><em>기술이 아니라 태도다</em></h2>
+    <p class="big-quote">
+      블랙 가스펠은 <strong>'진한 소울'</strong>과 <strong>'재즈급 테크닉'</strong>,<br>
+      그리고 <strong>'하드록에 견줄 파워'</strong>가 합쳐진 장르입니다.<br>
+      윤수용은 그 세 가지를 현지에서 살아내며 배웠습니다.
+    </p>
+    <div style="width:80px;height:2px;background:var(--gold);margin:0 auto 32px;"></div>
+    <p style="font-family:'Noto Serif KR',serif;font-size:15px;color:var(--muted);line-height:2;">
+      '프리칭(Preaching)' — 설교하듯 멜로디에 영성을 담아 부르는 방식.<br>
+      즉흥성과 영성이 살아있는 창법, 그 DNA를 한국인의 감성으로 해석하는 법을 알려드립니다.
+    </p>
+  </div>
+</section>
+
+<!-- ── CURRICULUM ── -->
+<section class="curriculum" id="curriculum">
+  <span class="section-eyebrow">Curriculum</span>
+  <h2>현지에서 배운 소울 싱잉<br><em>6가지 핵심 노하우</em></h2>
+  <div class="divider"></div>
+
+  <div class="curriculum-grid">
+    <div class="curriculum-card reveal">
+      <div class="card-num">01</div>
+      <span class="card-icon">🎙️</span>
+      <div class="card-title">블랙 가스펠 보컬의 구조 이해</div>
+      <div class="card-desc">흑인 가스펠 보컬이 어떤 원리로 작동하는지 분석합니다. 콜 앤 리스폰스(Call &amp; Response) 구조, 라인의 흐름과 감정의 아치를 파악합니다.</div>
+      <span class="card-tag">Foundation</span>
+    </div>
+
+    <div class="curriculum-card reveal">
+      <div class="card-num">02</div>
+      <span class="card-icon">🔥</span>
+      <div class="card-title">프리칭(Preaching) 창법 마스터</div>
+      <div class="card-desc">설교와 노래의 경계를 허무는 블랙 가스펠 고유의 창법. 그루브 위에 영성을 싣는 방법, 빌드업과 릴리즈의 타이밍을 체득합니다.</div>
+      <span class="card-tag">Core Technique</span>
+    </div>
+
+    <div class="curriculum-card reveal">
+      <div class="card-num">03</div>
+      <span class="card-icon">🎸</span>
+      <div class="card-title">소울풀한 멜리스마 & 런 구사</div>
+      <div class="card-desc">단순한 꾸밈음이 아닌, 감정을 실은 런(Run)과 멜리스마를 만드는 법. 미국 현지 스튜디오 세션에서 배운 실전 테크닉을 전달합니다.</div>
+      <span class="card-tag">Expression</span>
+    </div>
+
+    <div class="curriculum-card reveal">
+      <div class="card-num">04</div>
+      <span class="card-icon">⚡</span>
+      <div class="card-title">즉흥성과 애드립의 원리</div>
+      <div class="card-desc">가스펠 보컬의 핵심인 즉흥 애드립. 악보에 없는 음을 '제대로' 넣는 법, 공연 현장에서의 즉흥 대응력을 기릅니다.</div>
+      <span class="card-tag">Improvisation</span>
+    </div>
+
+    <div class="curriculum-card reveal">
+      <div class="card-num">05</div>
+      <span class="card-icon">💫</span>
+      <div class="card-title">영어 발음과 소울의 질감</div>
+      <div class="card-desc">블랙 가스펠 특유의 영어 발음과 억양이 소울감에 미치는 영향. 한국인이 쉽게 넘지 못하는 발음 장벽을 현지 경험으로 풀어드립니다.</div>
+      <span class="card-tag">Pronunciation</span>
+    </div>
+
+    <div class="curriculum-card reveal">
+      <div class="card-num">06</div>
+      <span class="card-icon">🌊</span>
+      <div class="card-title">무대 위 영성과 에너지 전달</div>
+      <div class="card-desc">BeBe Winans, CCC 브루클린 무대에서 배운 가스펠 공연의 본질. 청중과 에너지를 주고받으며 공간을 가득 채우는 퍼포먼스 마인드셋을 공유합니다.</div>
+      <span class="card-tag">Performance</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section class="skills-section reveal">
+  <span class="section-eyebrow">Vocal Skills</span>
+  <h2>현지에서 검증된<br><em>보컬 역량</em></h2>
+  <div class="divider"></div>
+
+  <div class="skills-layout">
+    <div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">블랙 가스펠 창법 이해</span>
+          <span class="skill-pct">98%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="--w:98%;--delay:0.1s;width:98%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">즉흥 애드립 & 런</span>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="--w:95%;--delay:0.2s;width:95%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">소울 & R&amp;B 감성 표현</span>
+          <span class="skill-pct">97%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="--w:97%;--delay:0.3s;width:97%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">무대 퍼포먼스 & 에너지</span>
+          <span class="skill-pct">96%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="--w:96%;--delay:0.4s;width:96%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">영어 가스펠 발음 & 억양</span>
+          <span class="skill-pct">93%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="--w:93%;--delay:0.5s;width:93%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="teaching-cards">
+      <div class="teach-card">
+        <span class="teach-icon">🎯</span>
+        <div>
+          <div class="teach-title">실전 중심 커리큘럼</div>
+          <div class="teach-desc">이론이 아닌 현장. 미국 스튜디오와 공연에서 직접 겪으며 얻은 실전 노하우만을 전달합니다. 불필요한 내용은 없습니다.</div>
+        </div>
+      </div>
+      <div class="teach-card">
+        <span class="teach-icon">🌍</span>
+        <div>
+          <div class="teach-title">한국인을 위한 해석</div>
+          <div class="teach-desc">단순히 블랙 가스펠을 흉내내는 것이 아닌, 한국인이 흡수하고 자기 것으로 만들 수 있는 방식으로 재해석합니다.</div>
+        </div>
+      </div>
+      <div class="teach-card">
+        <span class="teach-icon">🔊</span>
+        <div>
+          <div class="teach-title">영성과 음악의 균형</div>
+          <div class="teach-desc">가스펠 보컬은 영성 없이 완성되지 않습니다. 기술과 영성이 어떻게 소울로 연결되는지 직접 경험한 인사이트를 나눕니다.</div>
+        </div>
+      </div>
+      <div class="teach-card">
+        <span class="teach-icon">⭐</span>
+        <div>
+          <div class="teach-title">빌보드가 인정한 보이스</div>
+          <div class="teach-desc">BeBe Winans, RCA Inspiration이 선택한 한국인. 그 실력이 어디서 왔는지, 그 과정을 투명하게 공유합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACHIEVEMENTS ── -->
+<section class="achievements reveal">
+  <span class="section-eyebrow">Key Achievements</span>
+  <h2>현지가 인정한<br><em>윤수용의 족적</em></h2>
+  <div class="divider"></div>
+
+  <div class="ach-grid">
+    <div class="ach-item">
+      <span class="ach-num">01</span>
+      <span class="ach-icon">🏆</span>
+      <div>
+        <div class="ach-title">빌보드 가스펠 차트 Top 10</div>
+        <div class="ach-detail">BeBe Winans와 함께한 "Laughter"로 빌보드 가스펠 차트 10위권 진입. 한국인으로서 블랙 가스펠 장르에서 이룬 최초의 기록.</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <span class="ach-num">02</span>
+      <span class="ach-icon">📺</span>
+      <div>
+        <div class="ach-title">ABC 굿모닝 아메리카 출연</div>
+        <div class="ach-detail">BTS가 출연했던 미국 지상파 ABC의 간판 프로그램 굿모닝 아메리카에 코리안소울 리더로 출연, 전 미국에 한국인 가스펠의 존재를 알림.</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <span class="ach-num">03</span>
+      <span class="ach-icon">🎵</span>
+      <div>
+        <div class="ach-title">RCA Inspiration 레이블 계약</div>
+        <div class="ach-detail">세계 최대 가스펠 음악 레이블 RCA Inspiration과 공식 계약. 아시아 가수 최초 수준의 쾌거로 솔로 앨범 준비.</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <span class="ach-num">04</span>
+      <span class="ach-icon">🗽</span>
+      <div>
+        <div class="ach-title">브루클린 CCC 공연 (한국인 최초)</div>
+        <div class="ach-detail">한국인 최초로 뉴욕 브루클린 CCC(Christian Cultural Center) 공연장 무대에 올라 현지 가스펠 커뮤니티에서 공식 인정을 받음.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">윤수용 × Korean Soul</div>
+  <div class="footer-copy">© 2025 Korean Soul · All Rights Reserved</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Animate skill bars on scroll
+  const skillFills = document.querySelectorAll('.skill-fill');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'fillBar 1.5s ease-out both';
+      }
+    });
+  }, { threshold: 0.3 });
+
+  skillFills.forEach(el => skillObserver.observe(el));
+
+  function goBackOrHome() {
+    if (window.history.length > 1) {
+      window.history.back();
+      return;
+    }
+    window.location.href = './index.html';
+  }
+
+  document.querySelectorAll('[data-back-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      goBackOrHome();
+    });
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      goBackOrHome();
+    }
+  });
+</script>
+
+</body>
+</html>
