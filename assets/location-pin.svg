@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" role="img" aria-label="Map pin">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4f6fa"/>
+      <stop offset="100%" stop-color="#e2e7ef"/>
+    </linearGradient>
+    <radialGradient id="pinGlow" cx="50%" cy="56%" r="44%">
+      <stop offset="0%" stop-color="#ff6c76" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ff6c76" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+  <ellipse cx="600" cy="980" rx="210" ry="74" fill="url(#pinGlow)"/>
+
+  <g transform="translate(0,10)">
+    <path
+      d="M600 260c-149 0-270 121-270 270 0 214 270 500 270 500s270-286 270-500c0-149-121-270-270-270Z"
+      fill="#ea2a36"
+    />
+    <circle cx="600" cy="530" r="112" fill="#ffffff"/>
+    <circle cx="600" cy="530" r="52" fill="#ea2a36"/>
+  </g>
+</svg>

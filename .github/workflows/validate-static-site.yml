@@ -1,0 +1,76 @@
+name: Validate Static Site
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'codex/**'
+
+jobs:
+  validate-local-references:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Validate local asset references
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          root = Path(".").resolve()
+          html_files = sorted(root.glob("*.html"))
+          css_files = sorted(root.glob("*.css"))
+          js_files = sorted(root.glob("*.js"))
+          files = html_files + css_files + js_files
+          html_css_patterns = (
+              re.compile(r"""(?:src|href)=["']([^"']+)["']"""),
+              re.compile(r"""url\((?:["'])?([^)"']+)(?:["'])?\)"""),
+          )
+          js_pattern = re.compile(r"""["']((?:\./|\.\./|assets/)[^"']+)["']""")
+          local_prefixes = ("./", "../", "assets/")
+          missing = []
+
+          for file_path in files:
+              text = file_path.read_text(encoding="utf-8")
+              refs = []
+              if file_path.suffix in {".html", ".css"}:
+                  for pattern in html_css_patterns:
+                      refs.extend(pattern.findall(text))
+              else:
+                  refs.extend(js_pattern.findall(text))
+
+              for ref in refs:
+                  ref = ref.strip()
+                  if not ref.startswith(local_prefixes):
+                      continue
+
+                  normalized = ref.split("?", 1)[0].split("#", 1)[0]
+                  if not normalized:
+                      continue
+
+                  candidate = (file_path.parent / normalized).resolve()
+                  try:
+                      candidate.relative_to(root)
+                  except ValueError:
+                      continue
+
+                  if not candidate.exists():
+                      missing.append((file_path.relative_to(root), normalized))
+
+          if missing:
+              for source, ref in missing:
+                  print(f"Missing local reference in {source}: {ref}")
+              sys.exit(1)
+
+          print(f"Validated {len(files)} source files with no missing local references.")
+          PY
