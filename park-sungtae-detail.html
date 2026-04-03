@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>박성태 — 발성 전문가 · Vocal Coach</title>
+<link rel="icon" type="image/png" href="./assets/logo.png">
+<link rel="apple-touch-icon" href="./assets/logo.png">
+<link rel="stylesheet" href="./shared-top-nav.css">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,700&family=Syne:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -27,6 +30,7 @@ body {
   font-family: 'Syne', sans-serif;
   overflow-x: hidden;
   cursor: none;
+  padding-top: var(--return-nav-h, 48px);
 }
 
 /* Custom cursor */
@@ -54,7 +58,7 @@ body {
 
 /* ── NAV ── */
 nav {
-  position: fixed; top:0; left:0; right:0; z-index: 100;
+  position: fixed; top: var(--return-nav-h, 48px); left:0; right:0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
   padding: 20px 60px;
   background: rgba(253,252,250,0.92);
@@ -721,13 +725,35 @@ footer {
 </head>
 <body>
 
+<div class="return-nav">
+  <div class="return-nav__inner">
+    <a class="return-nav__brand" href="./index.html#overview">
+      <img src="./assets/logo.png" alt="NUVOCAL 로고">
+      <span>NUVOCAL</span>
+    </a>
+    <div class="return-nav__links">
+      <a href="./index.html#overview">Home</a>
+      <a href="./index.html#features">Features</a>
+      <a href="./index.html#coach">Coach</a>
+      <a href="./index.html#lineup">Lineup</a>
+      <a href="./index.html#studio">Studio</a>
+      <a href="./index.html#apply">Apply</a>
+      <a href="./index11.html">Original</a>
+    </div>
+    <div class="return-nav__actions">
+      <a class="return-nav__chip" href="./index.html#coach">메인으로</a>
+      <a class="return-nav__chip is-primary" href="https://open.kakao.com/o/spwR12Rg" target="_blank" rel="noopener noreferrer">상담 신청</a>
+    </div>
+  </div>
+</div>
+
 <!-- Custom cursor -->
 <div class="cursor" id="cur"></div>
 <div class="cursor-ring" id="curR"></div>
 
 <!-- ── NAV ── -->
 <nav>
-  <a href="./index.html" class="nav-back" data-back-link>Back</a>
+  <a href="./index.html#coach" class="nav-back" data-back-link>Back</a>
   <div class="nav-logo">박성태 Vocal Lab</div>
   <ul class="nav-links">
     <li><a href="#career">경력</a></li>
@@ -1307,7 +1333,7 @@ function goBackOrHome() {
     window.history.back();
     return;
   }
-  window.location.href = './index.html';
+  window.location.href = './index.html#coach';
 }
 
 document.querySelectorAll('[data-back-link]').forEach((link) => {

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nuvocal.</title>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <link rel="apple-touch-icon" href="./assets/logo.png">
+    <meta name="portone-store-id" content="">
+    <meta name="portone-channel-key" content="">
+    <meta name="portone-verify-endpoint" content="">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&amp;family=Oswald:wght@500;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- GSAP & Lenis (Smooth Scroll) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- UI Elements -->
+    <div class="home-btn">NUVOCAL</div>
+    <div class="progress-bar" id="progress-bar"></div>
+    <div class="close-btn">Close [X]</div>
+
+    <!-- Detail View Typography & Content -->
+    <div class="detail-view">
+        <div class="detail-title-container">
+            <div class="detail-title"></div>
+        </div>
+        <div class="detail-stage" id="detailStage" aria-hidden="true">
+            <button class="detail-stage-side is-prev is-hidden" id="detailPrevCard" type="button" aria-label="이전 카드">
+                <span class="detail-stage-side-frame">
+                    <img class="detail-stage-image is-side" id="detailPrevImage" alt="">
+                </span>
+                <span class="detail-stage-label" id="detailPrevLabel"></span>
+            </button>
+            <div class="detail-stage-main" id="detailStageMain">
+                <div class="detail-stage-main-frame">
+                    <img class="detail-stage-image is-current" id="detailCurrentImage" alt="">
+                    <div class="detail-stage-content">
+                        <div class="detail-info-card" id="detailInfoCard">
+                            <p class="detail-eyebrow" id="detailEyebrow"></p>
+                            <h2 class="detail-heading" id="detailHeading"></h2>
+                            <p class="detail-summary" id="detailSummary"></p>
+                        </div>
+                        <div class="detail-actions">
+                            <button class="detail-explore-btn" type="button">자세히 보기</button>
+                            <a class="detail-apply-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
+                            <a class="detail-compare-tab" href="./class-compare.html">클래스 비교</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="detail-stage-arrow is-left is-hidden" id="detailPrevArrow" type="button" aria-label="이전 카드">←</button>
+                <button class="detail-stage-arrow is-right is-hidden" id="detailNextArrow" type="button" aria-label="다음 카드">→</button>
+            </div>
+            <button class="detail-stage-side is-next is-hidden" id="detailNextCard" type="button" aria-label="다음 카드">
+                <span class="detail-stage-side-frame">
+                    <img class="detail-stage-image is-side" id="detailNextImage" alt="">
+                </span>
+                <span class="detail-stage-label" id="detailNextLabel"></span>
+            </button>
+        </div>
+        <div class="detail-location-panel" id="detailLocationPanel" aria-hidden="true">
+            <iframe
+                id="detailLocationMap"
+                class="detail-location-map"
+                title="누보컬 위치 지도"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+            ></iframe>
+            <p class="detail-location-text" id="detailLocationText"></p>
+            <div class="detail-location-links" id="detailLocationLinks"></div>
+        </div>
+        <div class="detail-scroll-hint" aria-hidden="true">
+            <span class="detail-scroll-text">Scroll</span>
+            <span class="detail-scroll-arrow">↓</span>
+        </div>
+    </div>
+
+    <div class="explore-mode" id="exploreMode" aria-hidden="true">
+        <h2 class="explore-left-title" id="exploreLeftTitle"></h2>
+        <aside class="explore-thumbs" id="exploreThumbs"></aside>
+        <section class="explore-stage">
+            <div class="explore-pages-track" id="explorePagesTrack"></div>
+        </section>
+        <div class="explore-meta">
+            <p>COMPLETE<br>TYPE<br>ROLE<br>CLIENT</p>
+            <p>JANUARY 2019<br>AGENCY PORTFOLIO<br>FULLSTACK DEV &amp; MOTION<br>NUVOCAL</p>
+            <p>DIGITAL AGENCY THAT SOLVES COMPLEX<br>PROBLEMS FOR PRODUCT AND BRANDS.</p>
+        </div>
+    </div>
+
+    <!-- Main Scrollable Content -->
+    <div class="scroll-container">
+        <div class="sticky-wrapper">
+            <div class="gallery-track">
+
+                <!-- Items with NUVOCAL contents -->
+                <div class="gallery-item logo-card" data-title="NUVOCAL" data-subtitle="" data-desc="" data-overlay-label="NUVOCAL" data-overlay-nowrap="true" data-disable-explore="true" data-bg="#2d3748">
+                    <div class="gallery-item-inner"><img src="./assets/logo.png" alt="NUVOCAL Logo"></div>
+                </div>
+
+                <div class="gallery-item" data-title="MENTO" data-subtitle="Core Focus: 마인드셋" data-desc="실전에서 흔들리지 않도록<br>복구 루틴과 집중 흐름을 설계해 편차를 줄입니다." data-overlay-label="MENTO" data-overlay-nowrap="true" data-apply-url="https://tally.so/r/wkr72J?class=mento" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-bg="#f5f6f8">
+                    <div class="gallery-item-inner"><img src="./assets/mento-card.jpg" alt="Award Winner Team"></div>
+                </div>
+
+                <div class="gallery-item first-card" data-title="NAVC" data-subtitle="과정소개" data-desc="노래에 필요한 기본적인 내용을 이론과 실기 비중을 나누어 진행되는 클래스 입니다.<br><br>[12weeks]<br>[참여멘토 : 박성태, 전다빈, 윤수용, 길구]<br>[커리큘럼 : 발성, 보컬테크닉, 즉흥가창법, 실전무대]" data-apply-url="https://tally.so/r/wkr72J?class=navc" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="NAVC" data-detail-image="./assets/navc-detail.png" data-bg="#1a1a1a">
+                    <div class="gallery-item-inner">
+                        <img src="./assets/navc.png" alt="NAVC">
+                        <div class="navc-overlay" aria-hidden="true">
+                            <div class="navc-vertical">NAVC</div>
+                            <div class="navc-side">Not A Vocal Class</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-title="SOULFUL VOCAL" data-subtitle="프로그램 소개" data-desc="Soulful Vocal은 감각적 가창을 넘어, 무대와 레코딩에서 재현 가능한 보컬 운용 시스템을 구축하는 12주 클래스입니다." data-apply-url="https://tally.so/r/wkr72J?class=navc-pro" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="SOULFUL VOCAL" data-bg="#2a2422">
+                    <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Premium Vocal Lesson"></div>
+                </div>
+
+                <div class="gallery-item care-plus-card" data-title="NAVC CARE+" data-subtitle="케어 프로그램" data-desc="NAVC CARE+는 수강 이후에도 보컬 퍼포먼스를 유지하도록 설계된 프리미엄 사후 관리 클래스입니다." data-apply-url="https://tally.so/r/wkr72J?class=navc-care-plus" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="NAVC CARE+" data-overlay-nowrap="true" data-bg="#22262f">
+                    <div class="gallery-item-inner care-plus-art">
+                        <img src="./assets/navccare.png" alt="NAVC CARE+">
+                        <div class="care-plus-title" aria-hidden="true">NAVC CARE+</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-title="RNR" data-subtitle="보컬테크닉 집중반" data-desc="RNR은 4주 동안 보컬테크닉을 기능 단위로 분해해 실전 가창 정확도를 끌어올리는 집중 프로그램입니다." data-apply-url="https://tally.so/r/wkr72J?class=rnr" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="RNR" data-bg="#111111">
+                    <div class="gallery-item-inner"><img src="./assets/rnr-upper.jpg" alt="RNR Upper Body"></div>
+                </div>
+
+                <div class="gallery-item" data-title="BGC" data-subtitle="화음감 집중반" data-desc="BGC는 화음과 블렌딩 감각을 빠르게 체화해 실제 팀 보컬 환경에서 완성도를 높이는 4주 클래스입니다." data-apply-url="https://tally.so/r/wkr72J?class=bgc" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="BGC" data-bg="#1a1a1a">
+                    <div class="gallery-item-inner"><img src="./assets/bgc-card.jpg" alt="BGC Choir"></div>
+                </div>
+
+                <div class="gallery-item" data-title="PRIVATE LESSON" data-subtitle="보컬코치 강동협 · 김서연" data-desc="누보컬] 서티파이드(Certified) 트레이너 1:1 맞춤형 보컬 트레이닝" data-apply-url="https://tally.so/r/wkr72J?class=private-lesson" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="PRIVATE LESSON" data-overlay-nowrap="true" data-bg="#17181c">
+                    <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1636581563713-5ead3fb53a80?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=80&amp;w=1400" alt="Private Lesson"></div>
+                </div>
+
+                <div class="gallery-item" data-title="SINGASONG WRITER" data-subtitle="Songwriting &amp; Melody Class" data-desc="가창을 넘어 멜로디, 가사, 톱라인을 직접 설계해 한 곡의 데모로 완성하는 클래스입니다." data-apply-url="https://tally.so/r/wkr72J?class=singasong-writer" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="SINGASONG WRITER" data-overlay-nowrap="true" data-bg="#1b1620">
+                    <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&amp;w=1400&amp;auto=format&amp;fit=crop" alt="Singasong Writer Class"></div>
+                </div>
+
+                <div class="gallery-item" data-title="MIDI" data-subtitle="MIDI Production Class" data-desc="MIDI 기반으로 리듬, 코드, 사운드 레이어를 설계해 실제 트랙으로 완성하는 4주 클래스입니다." data-apply-url="https://tally.so/r/wkr72J?class=midi" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="MIDI" data-overlay-nowrap="true" data-bg="#1b1e28">
+                    <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&amp;w=1400&amp;auto=format&amp;fit=crop" alt="MIDI Class"></div>
+                </div>
+
+                <div class="gallery-item" data-title="GUITAR" data-subtitle="Guitar Performance Class" data-desc="톤 메이킹과 리듬 운용을 중심으로 라이브 퍼포먼스 완성도를 높이는 4주 클래스입니다." data-apply-url="https://tally.so/r/wkr72J?class=guitar" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="GUITAR" data-overlay-nowrap="true" data-bg="#1f1613">
+                    <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1465821185615-20b3c2fbf41b?q=80&amp;w=1400&amp;auto=format&amp;fit=crop" alt="Guitar Class"></div>
+                </div>
+
+                <div class="gallery-item" data-title="JAZZ PIANO" data-subtitle="Jazz Piano Class" data-desc="Jazz Piano는 화성 언어를 귀로 먼저 익히고 손이 그것을 따라가도록 설계된 클래스입니다." data-apply-url="https://tally.so/r/wkr72J?class=jazz-piano" data-apply-label="신청하기" data-compare-url="./class-compare.html" data-compare-label="클래스 비교" data-overlay-label="JAZZ PIANO" data-overlay-nowrap="true" data-bg="#181716">
+                    <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1514119412350-e174d90d280e?q=80&amp;w=1400&amp;auto=format&amp;fit=crop" alt="Jazz Piano Class"></div>
+                </div>
+
+                <div class="gallery-item" data-title="LOCATION" data-subtitle="스튜디오 위치 안내" data-desc="누보컬 스튜디오 위치를 지도에서 바로 확인할 수 있습니다." data-overlay-label="LOCATION" data-overlay-nowrap="true" data-map-embed="https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%99%80%EC%9A%B0%EC%82%B0%EB%A1%9C%2018%EA%B8%B8%2012&amp;output=embed" data-location-text="누보컬 서울 마포구 와우산로 18길 12, 4층" data-google-map-url="https://www.google.com/maps/search/?api=1&amp;query=%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%99%80%EC%9A%B0%EC%82%B0%EB%A1%9C%2018%EA%B8%B8%2012" data-naver-map-url="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%99%80%EC%9A%B0%EC%82%B0%EB%A1%9C%2018%EA%B8%B8%2012" data-bg="#1a1a1a">
+                    <div class="gallery-item-inner"><img src="./assets/location-pin.svg" alt="Location Pin"></div>
+                </div>
+
+                <div class="gallery-item" data-title="CONTACT" data-subtitle="공식 채널" data-desc="누보컬 공식 채널로 연결됩니다." data-overlay-label="CONTACT" data-overlay-nowrap="true" data-contact-mode="true" data-contact-text="NUVOCAL Official Channel" data-instagram-url="https://www.instagram.com/nuvocal_/" data-kakao-url="https://open.kakao.com/o/spwR12Rg" data-youtube-url="https://www.youtube.com/@nuvocal" data-bg="#2d2a26">
+                    <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Contact"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+
+</body>
+</html>

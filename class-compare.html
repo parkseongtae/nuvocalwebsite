@@ -6,6 +6,7 @@
     <title>Nuvocal - 클래스 모델 비교하기</title>
     <link rel="icon" type="image/png" href="./assets/logo.png">
     <link rel="apple-touch-icon" href="./assets/logo.png">
+    <link rel="stylesheet" href="./shared-top-nav.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -15,10 +16,11 @@
             color: #1d1d1f;
             letter-spacing: -0.03em;
             line-height: 1.5;
+            padding-top: var(--return-nav-h, 48px);
         }
         .apple-bold { font-weight: 800; }
         .apple-border { border-bottom: 1px solid #d2d2d7; }
-        .sticky-header { position: sticky; top: 0; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); z-index: 50; }
+        .sticky-header { position: sticky; top: var(--return-nav-h, 48px); background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); z-index: 50; }
 
         /* 블랙 카드 스타일 */
         .black-card {
@@ -48,12 +50,34 @@
 </head>
 <body>
 
+    <div class="return-nav">
+        <div class="return-nav__inner">
+            <a class="return-nav__brand" href="./index.html#overview">
+                <img src="./assets/logo.png" alt="NUVOCAL 로고">
+                <span>NUVOCAL</span>
+            </a>
+            <div class="return-nav__links">
+                <a href="./index.html#overview">Home</a>
+                <a href="./index.html#features">Features</a>
+                <a href="./index.html#coach">Coach</a>
+                <a href="./index.html#lineup">Lineup</a>
+                <a href="./index.html#studio">Studio</a>
+                <a href="./index.html#apply">Apply</a>
+                <a href="./index11.html">Original</a>
+            </div>
+            <div class="return-nav__actions">
+                <a class="return-nav__chip" href="./index.html#lineup">메인으로</a>
+                <a class="return-nav__chip is-primary" href="https://open.kakao.com/o/spwR12Rg" target="_blank" rel="noopener noreferrer">상담 신청</a>
+            </div>
+        </div>
+    </div>
+
     <!-- 상단 네비게이션 -->
     <nav class="sticky-header apple-border py-4 px-6">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <h1 class="text-2xl apple-bold tracking-tight">비교하기</h1>
             <div class="flex gap-6 items-center">
-                <a href="#" class="text-blue-600 hover:underline text-sm font-medium">모든 클래스 보기 ></a>
+                <a href="./index.html#lineup" class="text-blue-600 hover:underline text-sm font-medium">메인 라인업으로 ></a>
             </div>
         </div>
     </nav>

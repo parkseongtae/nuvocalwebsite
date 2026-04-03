@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>윤수용 — Korean Soul Leader</title>
+<link rel="icon" type="image/png" href="./assets/logo.png">
+<link rel="apple-touch-icon" href="./assets/logo.png">
+<link rel="stylesheet" href="./shared-top-nav.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Serif+KR:wght@300;400;600;700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -27,6 +30,7 @@
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
+    padding-top: var(--return-nav-h, 48px);
   }
 
   /* ── NOISE TEXTURE OVERLAY ── */
@@ -42,7 +46,7 @@
 
   .back-link {
     position: fixed;
-    top: 24px;
+    top: calc(var(--return-nav-h, 48px) + 24px);
     left: 24px;
     z-index: 1001;
     display: inline-flex;
@@ -966,7 +970,29 @@
 </head>
 <body>
 
-<a href="./index.html" class="back-link" data-back-link>Back</a>
+<div class="return-nav">
+  <div class="return-nav__inner">
+    <a class="return-nav__brand" href="./index.html#overview">
+      <img src="./assets/logo.png" alt="NUVOCAL 로고">
+      <span>NUVOCAL</span>
+    </a>
+    <div class="return-nav__links">
+      <a href="./index.html#overview">Home</a>
+      <a href="./index.html#features">Features</a>
+      <a href="./index.html#coach">Coach</a>
+      <a href="./index.html#lineup">Lineup</a>
+      <a href="./index.html#studio">Studio</a>
+      <a href="./index.html#apply">Apply</a>
+      <a href="./index11.html">Original</a>
+    </div>
+    <div class="return-nav__actions">
+      <a class="return-nav__chip" href="./index.html#coach">메인으로</a>
+      <a class="return-nav__chip is-primary" href="https://open.kakao.com/o/spwR12Rg" target="_blank" rel="noopener noreferrer">상담 신청</a>
+    </div>
+  </div>
+</div>
+
+<a href="./index.html#coach" class="back-link" data-back-link>Back</a>
 
 <!-- ── HERO ── -->
 <section class="hero">
@@ -1343,7 +1369,7 @@
       window.history.back();
       return;
     }
-    window.location.href = './index.html';
+    window.location.href = './index.html#coach';
   }
 
   document.querySelectorAll('[data-back-link]').forEach((link) => {
