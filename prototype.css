@@ -340,11 +340,17 @@ button {
     margin-top: 24px;
 }
 
-.hero-note {
+.hero-note,
+.hero-search-copy {
     margin: 20px 0 0;
     font-size: 14px;
     line-height: 1.4;
     color: var(--text-secondary);
+}
+
+.hero-search-copy {
+    max-width: 640px;
+    margin-inline: auto;
 }
 
 .hero-media {
