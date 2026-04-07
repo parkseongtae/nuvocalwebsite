@@ -3,6 +3,7 @@ gsap.registerPlugin(ScrollTrigger);
 const cursor = document.querySelector('.cursor');
 const homeBtn = document.querySelector('.home-btn');
 const closeBtn = document.querySelector('.close-btn');
+const pageViewSwitch = document.querySelector('.page-view-switch');
 const detailView = document.querySelector('.detail-view');
 const detailTitleContainer = document.querySelector('.detail-title-container');
 const detailTitle = document.querySelector('.detail-title');
@@ -1184,6 +1185,7 @@ function setupCursor() {
         ...cards.map((card) => card.el),
         homeBtn,
         closeBtn,
+        pageViewSwitch,
         detailExploreBtn,
         detailApplyBtn,
         detailCompareTab,
@@ -1603,6 +1605,8 @@ function isLocationOrContactCard(card) {
 function cardSupportsExplore(card) {
     return (
         Boolean(card) &&
+        Boolean(exploreMode) &&
+        Boolean(detailExploreBtn) &&
         card?.el?.dataset.disableExplore !== 'true' &&
         !isLocationOrContactCard(card)
     );
@@ -2039,6 +2043,9 @@ function openDetailAtIndex(index) {
     if (homeBtn) {
         gsap.to(homeBtn, { opacity: 0, pointerEvents: 'none', duration: 0.3 });
     }
+    if (pageViewSwitch) {
+        gsap.to(pageViewSwitch, { opacity: 0, pointerEvents: 'none', duration: 0.24 });
+    }
 
     gsap.to(cards.map((card) => card.el), {
         opacity: 0,
@@ -2079,6 +2086,9 @@ function closeActiveDetail(options = {}) {
     }
     if (homeBtn) {
         gsap.to(homeBtn, { opacity: 1, pointerEvents: 'auto', duration: 0.3, delay: 0.45 });
+    }
+    if (pageViewSwitch) {
+        gsap.to(pageViewSwitch, { opacity: 1, pointerEvents: 'auto', duration: 0.3, delay: 0.45 });
     }
 
     clearDetailButtons();

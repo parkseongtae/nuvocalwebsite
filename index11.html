@@ -33,6 +33,12 @@
     <div class="home-btn">NUVOCAL</div>
     <div class="progress-bar" id="progress-bar"></div>
     <div class="close-btn">Close [X]</div>
+    <a class="page-view-switch is-active" href="./index.html" title="Apple 상세 페이지로 돌아가기" aria-label="Apple 상세 페이지로 돌아가기">
+        <span class="page-view-switch__label">전체페이지 보기</span>
+        <span class="page-view-switch__track" aria-hidden="true">
+            <span class="page-view-switch__thumb"></span>
+        </span>
+    </a>
 
     <!-- Detail View Typography & Content -->
     <div class="detail-view">
@@ -56,7 +62,6 @@
                             <p class="detail-summary" id="detailSummary"></p>
                         </div>
                         <div class="detail-actions">
-                            <button class="detail-explore-btn" type="button">자세히 보기</button>
                             <a class="detail-apply-btn" href="#" target="_blank" rel="noopener noreferrer"></a>
                             <a class="detail-compare-tab" href="./class-compare.html">클래스 비교</a>
                         </div>
@@ -83,23 +88,6 @@
             ></iframe>
             <p class="detail-location-text" id="detailLocationText"></p>
             <div class="detail-location-links" id="detailLocationLinks"></div>
-        </div>
-        <div class="detail-scroll-hint" aria-hidden="true">
-            <span class="detail-scroll-text">Scroll</span>
-            <span class="detail-scroll-arrow">↓</span>
-        </div>
-    </div>
-
-    <div class="explore-mode" id="exploreMode" aria-hidden="true">
-        <h2 class="explore-left-title" id="exploreLeftTitle"></h2>
-        <aside class="explore-thumbs" id="exploreThumbs"></aside>
-        <section class="explore-stage">
-            <div class="explore-pages-track" id="explorePagesTrack"></div>
-        </section>
-        <div class="explore-meta">
-            <p>COMPLETE<br>TYPE<br>ROLE<br>CLIENT</p>
-            <p>JANUARY 2019<br>AGENCY PORTFOLIO<br>FULLSTACK DEV &amp; MOTION<br>NUVOCAL</p>
-            <p>DIGITAL AGENCY THAT SOLVES COMPLEX<br>PROBLEMS FOR PRODUCT AND BRANDS.</p>
         </div>
     </div>
 
